@@ -15,11 +15,44 @@
 
             width: 500px;
 
-            margin: 30px auto 0px auto;
+            margin: 30px auto 50px auto;
             padding: 20px;
             box-shadow: 0px 0px 3px 0px blue;
             border-radius: 5px;
 
+        }
+
+        .commandbox {
+            background-color: rgb(231, 235, 233);
+            width: 1000px;
+            margin: 30px auto 50px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px rgb(170, 143, 161);
+            border-radius: 5px;
+            text-align: center;
+            font-size: 30px;
+        }
+        .post{
+            
+            display:flex;    
+
+        }
+        .nickname{
+            background-color: white;
+            padding: 20px;
+            margin: 10px 10px 10px 10px;
+            border-radius: 5px;
+            width: 150px;
+            font-size: 18px;
+        }
+        .reply{
+            background-color: white;
+            padding: 20px;
+            width: 800px;
+            margin: 10px 10px 10px 10px;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 18px;
         }
     </style>
     <script type="module">
@@ -73,10 +106,10 @@
 
             let temp_html = `
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">${name}</h5>
-                        <p class="card-text">${command}</p>
+                <div>
+                    <div class="post">
+                        <p class="nickname">${name}</p>
+                        <p class="reply">${command}</p>
                     </div>
                 </div>
             </div>`;
@@ -100,18 +133,14 @@
             <button id="postingbtn" type="button" class="btn btn-primary">기록하기</button>
         </div>
     </div>
-    <div class="mycards">
-        <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">앨범 제목</h5>
-                        <p class="card-text">앨범 내용</p>
-                    </div>
-                </div>
+    <div class="commandbox">
+        <p>방문록</p>
+        <div class="mycards">
+            <div id="card" class="row row-cols-1 row-cols-md-1 g-4">
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
