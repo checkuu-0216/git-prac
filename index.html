@@ -51,7 +51,14 @@
         const db = getFirestore(app);
 
         $("#postingbtn").click(async function () {
-            let doc = {};
+            let name = $('#name').val();
+            let command = $('#command').val();
+
+            let doc = {
+                'name':name,
+                'command':command
+            }
+
             await addDoc(collection(db, "albums"), doc);
         })
 
@@ -61,11 +68,11 @@
 <body>
     <div class="mypostingbox" id="postingbox">
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="image" placeholder="앨범 이미지">
+            <input type="email" class="form-control" id="name" placeholder="앨범 이미지">
             <label for="floatingInput">닉네임</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="title" placeholder="앨범 제목">
+            <input type="email" class="form-control" id="command" placeholder="앨범 제목">
             <label for="floatingInput">내용</label>
         </div>
 
