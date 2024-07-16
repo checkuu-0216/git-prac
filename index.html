@@ -67,23 +67,20 @@
         let docs = await getDocs(collection(db, "albums"));
         docs.forEach((doc) => {
             let row = doc.data();
-            console.log(row);
-            let name = $('#name').val();
-            let command = $('#command').val();
 
-            let temp_html = `<div class="col">
+            let name = row['name'];
+            let command = row['command'];
+
+            let temp_html = `
+            <div class="col">
                 <div class="card h-100">
-                    <img src="${image}"
-                        class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">${content}</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary">${date}</small>
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${command}</p>
                     </div>
                 </div>
             </div>`;
+            $('#card').append(temp_html);
         });
 
     </script>
@@ -99,7 +96,6 @@
             <input type="email" class="form-control" id="command" placeholder="앨범 제목">
             <label for="floatingInput">내용</label>
         </div>
-
         <div class="mybtn">
             <button id="postingbtn" type="button" class="btn btn-primary">기록하기</button>
         </div>
@@ -108,7 +104,6 @@
         <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col">
                 <div class="card h-100">
-
                     <div class="card-body">
                         <h5 class="card-title">앨범 제목</h5>
                         <p class="card-text">앨범 내용</p>
