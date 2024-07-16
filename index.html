@@ -55,14 +55,36 @@
             let command = $('#command').val();
 
             let doc = {
-                'name':name,
-                'command':command
+                'name': name,
+                'command': command
             };
 
             await addDoc(collection(db, "albums"), doc);
             alert('게시 완료!');
             window.location.reload();
         })
+
+        let docs = await getDocs(collection(db, "albums"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+            console.log(row);
+            let name = $('#name').val();
+            let command = $('#command').val();
+
+            let temp_html = `<div class="col">
+                <div class="card h-100">
+                    <img src="${image}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${content}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">${date}</small>
+                    </div>
+                </div>
+            </div>`;
+        });
 
     </script>
 </head>
@@ -80,6 +102,19 @@
 
         <div class="mybtn">
             <button id="postingbtn" type="button" class="btn btn-primary">기록하기</button>
+        </div>
+    </div>
+    <div class="mycards">
+        <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                        <h5 class="card-title">앨범 제목</h5>
+                        <p class="card-text">앨범 내용</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
