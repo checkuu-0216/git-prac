@@ -57,9 +57,11 @@
             let doc = {
                 'name':name,
                 'command':command
-            }
+            };
 
             await addDoc(collection(db, "albums"), doc);
+            alert('게시 완료!');
+            window.location.reload();
         })
 
     </script>
