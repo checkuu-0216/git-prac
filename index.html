@@ -12,23 +12,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Single+Day&display=swap');
 
-
         * {
             font-family: "IBM Plex Sans KR", sans-serif;
             font-weight: 400;
             font-style: normal;
-
         }
 
         .mytitle {
             height: 250px;
             color: white;
-
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
             background-image: url('https://images.unsplash.com/photo-1511992243105-2992b3fd0410?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
             background-position: center;
             background-size: cover;
@@ -41,23 +37,20 @@
             color: rgb(248, 149, 149);
             border: 1px solid rgba(134, 168, 149, 0.89);
             border-radius: 5px;
-
             margin-top: 20px;
         }
 
         .mypostingbox {
-
             width: 500px;
             background-color: rgb(231, 235, 233);
             margin: 30px auto 50px auto;
             padding: 20px;
             box-shadow: 0px 0px 3px 0px rgb(168, 168, 173);
             border-radius: 5px;
-
         }
 
         .button2 {
-            float: right;
+            margin-left: 380px;
         }
 
         .commandbox {
@@ -72,9 +65,7 @@
         }
 
         .post {
-
             display: flex;
-
         }
 
         .nickname {
@@ -94,6 +85,10 @@
             border-radius: 5px;
             text-align: left;
             font-size: 18px;
+        }
+
+        .bad {
+            color: red;
         }
     </style>
     <script type="module">
@@ -119,6 +114,15 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        $(document).ready(function () {
+            let url = 'http://spartacodingclub.shop/sparta_api/seoulair'
+            fetch(url).then(res => res.json()).then(data => {
+                let mise = data['RealtimeCityAir']['row'][0]['IDEX_MVL'];
+                $('#msg').text(mise);
+            })
+
+        })
 
         $("#postingbtn").click(async function () {
             let name = $('#name').val();
@@ -156,7 +160,25 @@
             </div>`;
             $('#card').append(temp_html);
         });
-
+        /*
+                function hey() {
+                    let url = 'http://spartacodingclub.shop/sparta_api/seoulair'
+                    $('#names-q1').empty();
+                    fetch(url).then(res => res.json()).then(data => {
+                        let rows = data['RealtimeCityAir']['row'];
+                        rows.forEach(a => {
+                            let gu_mise = a['IDEX_MVL'];
+        
+                            let temp_html = ``;
+                            if (gu_mise > 40) {
+                                temp_html = `<li class="bad">${gu_mise}</li>`;
+                            } else {
+                                temp_html = `<li> ${gu_mise}</li>`;
+                            }
+                            $('#names-q1').append(temp_html);
+                        });
+                    })
+                }*/
     </script>
 </head>
 
@@ -164,7 +186,7 @@
     <div class="mytitle">
         <h1>그냥 뭔가 만들어보는 용</h1>
         <!-- 미세먼지 자료넣기 -->
-        <p>현재 서울의 미세먼지 : <span id="msg">skQMa</span></p>
+        <p>현재 서울의 미세먼지 : <span id="msg">나쁨</span></p>
         <button class="button" id="savebtn">추억 저장하기</button>
     </div>
 
@@ -179,7 +201,7 @@
             <label for="floatingInput">내용</label>
         </div>
         <div>
-            <button class="button2" id="postingbtn" type="button">기록하기</button>
+            <button class="button2" id="postingbtn">기록하기</button>
         </div>
     </div>
     <div class="commandbox">
